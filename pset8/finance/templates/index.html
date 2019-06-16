@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">User</th>
+              <th scope="col">Cash</th>
+              <th scope="col">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ rows[0]["username"] }}</th>
+              <td>{{ rows[0]["cash"] }}</td>
+              <td>{{ total_price }}</td>
+            </tr>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">Symbol</th>
+              <th scope="col">Stocks Owned</th>
+              <th scope="col">Current Price</th>
+              <th scope="col">Total Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in rows_portfolio %}
+                <tr>
+                  <th scope="row">{{ row["symbol"] }}</th>
+                  <td>{{ row["sum(shares)"] }}</td>
+                  <td>{{ row["price"] }}</td>
+                  <td>{{ row["price"]*row["sum(shares)"] }}</td>
+                </tr>
+            {% endfor %}
+    </table>
+{% endblock %}
